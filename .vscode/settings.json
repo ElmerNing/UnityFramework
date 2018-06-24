@@ -1,0 +1,43 @@
+{
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/*.meta": true,
+        "**/Library": true,
+        "**/Temp": true,
+        "**/Assets/3rd": true,
+        "**/Assets/StreamingAssets": true,
+    },
+    "search.exclude": {
+        "**/node_modules": true,
+        "**/bower_components": true,
+        "**/*.unity": true,
+        "**/*.prefab": true,
+        "**/*.mat": true,
+        "**/*.png": true,
+        "**/*.tga": true,
+        "**/*.psd": true,
+        "**/*.fbx": true,
+        "**/*.so": true,
+        "**/*.a": true,
+        "**/*.": true,
+    },
+    "luaide.apiType": "ulua",
+    "luaide.luaOperatorCheck": false,
+    // 一部分开发者喜欢用 local M_ = {}  return M_ 来定义并返回,由于luaide是全局搜索导致这样提示跳转等都会出现不准确的情况,请固定一些 如 M_ 的命名 luaide全局搜索时会进行忽略, 默认值:  M_,_M 注:require 不受影响
+    "luaide.moduleNames": [
+        "M",
+    ],
+    // 是否显示当前LuaIde在线人数
+    "luaide.showOnLine": false,
+    // 适用于习惯用 M_ 这种方式定义 table 并返回 M_ 时 提示tag标签都显示M_ 设置为true 后显示文件名/M_
+    "luaide.tagIsShowFileName": true,
+    // lua代码文件夹根目录(可以设置多个目录),用以require 时提示路径
+    "luaide.scriptRoots": [
+        "D:\\work\\unityshadertest\\UnityFrameWork\\Assets\\Project\\Lua"
+    ],
+    "luaide.luaTemplatesDir":"D:\\work\\unityshadertest\\UnityFrameWork\\LuaTemplatesDir",
+}
