@@ -4,3 +4,5 @@
 /UnityFrameWork.Editor.csproj
 /UnityFrameWork.sln
 /UnityFrameWork.csproj
+/Assets/3rd/ToLua/Source/Generate/*Wrap.cs
+/Assets/3rd/ToLua/Source/Generate/*Wrap.cs.meta
