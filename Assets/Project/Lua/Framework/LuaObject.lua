@@ -10,6 +10,10 @@
 local M = {}
 M.__index = M
 
+--@return [Framework.LuaObject#M]
+function M.New()
+    return M.__call(M)
+end
 
 --构造函数
 function M:ctor()
@@ -40,6 +44,10 @@ function M.DestroyObject(obj)
     if not obj.isDisposed then
         obj:dispose()
     end
+end
+
+function M.IsNull(obj)
+    return obj == nil or obj.isDisposed 
 end
 
 

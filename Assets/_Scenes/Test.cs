@@ -19,7 +19,10 @@ public class Test : MonoBehaviour {
 
     private void OnDestroy()
     {
-        LuaState.Get(IntPtr.Zero).Dispose();
+        LuaState lua = LuaState.Get(IntPtr.Zero);
+        if (lua != null) {
+            lua.Dispose();
+        }
     }
     // Update is called once per frame
     void Update () {

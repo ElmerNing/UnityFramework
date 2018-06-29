@@ -12,9 +12,6 @@ LogNY = Log.New():SetName("ny"):SetEnabled(true)
 
 --LuaObject.DestroyObject(Log_Info)
 
-local btn = UnityEngine.GameObject.Find("Canvas").transform
-
-LogInfo:Print(btn)
 
 
 
