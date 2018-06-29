@@ -16,6 +16,7 @@ public class Test : MonoBehaviour {
 
         this.gameObject.AddComponent<LuaLooper>().luaState = lua;
 
+
     }
 
     private void OnDestroy()
