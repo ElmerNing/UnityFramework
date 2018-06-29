@@ -37,7 +37,7 @@
     "luaide.tagIsShowFileName": true,
     // lua代码文件夹根目录(可以设置多个目录),用以require 时提示路径
     "luaide.scriptRoots": [
-        "${workspaceRoot}\\Assets\\Project\\Lua"
+        "${workspaceRoot}\\Assets\\Lua"
     ],
     "luaide.luaTemplatesDir":"${workspaceRoot}\\LuaTemplatesDir",
 }
