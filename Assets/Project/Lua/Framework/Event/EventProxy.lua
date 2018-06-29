@@ -103,7 +103,7 @@ function M:Broacast(eventName, ...)
 
 end
 
-if true then
+if false then
 	local eventProxy = M.New()
 	
 	local lo = LuaObject.New()
