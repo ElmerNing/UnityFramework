@@ -4,6 +4,8 @@ require("Framework.Extends.Init")
 --所有Lua对象的基类
 LuaObject = require("Framework.LuaObject")
 
+
+
 --面向对象系统
 class = function(classname, Super)
     local ret = (Super or LuaObject):Extend(classname)
@@ -29,6 +31,9 @@ Log = require("Framework.Utils.Log")
 
 --事件代理
 EventProxy = require("Framework.Event.EventProxy")
+
+--内存泄露检测
+MemLeak = require("Framework.Utils.MemLeak").GetInstance()
 
 
 

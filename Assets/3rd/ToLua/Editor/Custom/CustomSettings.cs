@@ -152,7 +152,12 @@ public static class CustomSettings
         _GT(typeof(LuaProfiler)),
         
         //
+
         _GT(typeof(System.GC)),
+
+
+        _GT(typeof(UnityEngine.UI.Button)),
+        _GT(typeof(UnityEngine.UI.Button.ButtonClickedEvent)),
     };
 
     public static List<Type> dynamicList = new List<Type>()

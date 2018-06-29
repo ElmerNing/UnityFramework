@@ -11,6 +11,7 @@ public class Test : MonoBehaviour {
         LuaState lua = new LuaState();
         lua.Start();
         LuaBinder.Bind(lua);
+        DelegateFactory.Init();
         lua.DoFile("Main.lua");
 
         this.gameObject.AddComponent<LuaLooper>().luaState = lua;
