@@ -18,6 +18,10 @@ tq:Queue(function()
 
 end)
 
+local gcom = FairyGUI.GComponent.New()
+
+
+
 
 
 
