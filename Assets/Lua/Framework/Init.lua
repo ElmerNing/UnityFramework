@@ -35,6 +35,11 @@ EventProxy = require("Framework.Event.EventProxy")
 --内存泄露检测
 MemLeak = require("Framework.Utils.MemLeak").GetInstance()
 
+--协程小工具
+CorUtil = require("Framework.Coroutine.CorUtil")
+
+--任务队列
+TaskQueue = require("Framework.Coroutine.TaskQueue")
 
 
 

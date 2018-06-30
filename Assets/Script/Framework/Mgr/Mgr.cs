@@ -32,10 +32,10 @@ namespace FW
         public Mgr()
         {
             _inst = this;
-            var gameObject = new GameObject();
-
+            this.gameObject = new GameObject();
+            this.gameObject.name = "Mgr";
             GameObject.DontDestroyOnLoad(gameObject);
-            gameObject.AddComponent<MonoBehaviour>();
+            //gameObject.AddComponent<MonoBehaviour>();
         }
 
         public T GetMgr<T>() where T:BaseMgr
@@ -52,7 +52,7 @@ namespace FW
             T t = this.gameObject.GetComponent<T>();
             if (t == null)
             {
-                this.gameObject.AddComponent<T>();
+                t = this.gameObject.AddComponent<T>();
             }
             return t;
         }

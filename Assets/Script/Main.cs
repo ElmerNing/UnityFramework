@@ -13,7 +13,7 @@ public class Main : MonoBehaviour {
         new FW.Mgr();
 
         FW.Mgr.inst.AddMgr<FW.ResMgr>();
-
+        FW.Mgr.inst.AddMgr<FW.LuaMgr>().StartUp();
 
         //
     }
