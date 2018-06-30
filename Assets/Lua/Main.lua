@@ -3,10 +3,12 @@
 require("Framework.Init")
 
 
--- local go = FairyGUI.GObject()
--- go:Dispose()
+local go = FairyGUI.GObject()
+go:Dispose()
 
--- print( tolua.isnull(go) )
+print( tolua.isnull(go) )
+
+IsNull(go)
 
 
 
