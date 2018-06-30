@@ -1550,6 +1550,7 @@ namespace FairyGUI
 				displayObject.Dispose();
 			}
 			data = null;
+            isDisposed = true;
 		}
 
 		public GImage asImage
@@ -2021,6 +2022,18 @@ namespace FairyGUI
 				.SetRecyclable()
 				.SetTarget(this);
 		}
-		#endregion
-	}
+        #endregion
+
+
+        #region tolua.isnull Support
+        protected bool isDisposed = false;
+        public override bool Equals(System.Object o)
+        {
+            if (o == null && this.isDisposed==true) {
+                return true;
+            }
+            return base.Equals(o);
+        }
+        #endregion
+    }
 }

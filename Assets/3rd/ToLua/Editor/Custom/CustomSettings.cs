@@ -6,6 +6,7 @@ using UnityEditor;
 
 using BindType = ToLuaMenu.BindType;
 using System.Reflection;
+using FairyGUI;
 
 public static class CustomSettings
 {
@@ -151,13 +152,63 @@ public static class CustomSettings
         _GT(typeof(Resources)),     
         _GT(typeof(LuaProfiler)),
         
-        //
-
+        // 自定义系统
         _GT(typeof(System.GC)),
 
-
+        //自定义Unity
         _GT(typeof(UnityEngine.UI.Button)),
         _GT(typeof(UnityEngine.UI.Button.ButtonClickedEvent)),
+
+        //FairyGUI
+        _GT(typeof(EventContext)),
+        _GT(typeof(EventDispatcher)),
+        _GT(typeof(EventListener)),
+        _GT(typeof(InputEvent)),
+        _GT(typeof(DisplayObject)),
+        _GT(typeof(Container)),
+        _GT(typeof(Stage)),
+        _GT(typeof(FairyGUI.Controller)),
+        _GT(typeof(GObject)),
+        _GT(typeof(GGraph)),
+        _GT(typeof(GGroup)),
+        _GT(typeof(GImage)),
+        _GT(typeof(GLoader)),
+        _GT(typeof(PlayState)),
+        _GT(typeof(GMovieClip)),
+        _GT(typeof(TextFormat)),
+        _GT(typeof(GTextField)),
+        _GT(typeof(GRichTextField)),
+        _GT(typeof(GTextInput)),
+        _GT(typeof(GComponent)),
+        _GT(typeof(GList)),
+        _GT(typeof(GRoot)),
+        _GT(typeof(GLabel)),
+        _GT(typeof(GButton)),
+        _GT(typeof(GComboBox)),
+        _GT(typeof(GProgressBar)),
+        _GT(typeof(GSlider)),
+        _GT(typeof(PopupMenu)),
+        _GT(typeof(ScrollPane)),
+        _GT(typeof(Transition)),
+        _GT(typeof(UIPackage)),
+        _GT(typeof(Window)),
+        _GT(typeof(GObjectPool)),
+        _GT(typeof(Relations)),
+        _GT(typeof(RelationType)),
+        _GT(typeof(Timers)),
+
+        _GT(typeof(LuaUIHelper)),
+        _GT(typeof(GLuaComponent)),
+        _GT(typeof(GLuaLabel)),
+        _GT(typeof(GLuaButton)),
+        _GT(typeof(GLuaProgressBar)),
+        _GT(typeof(GLuaSlider)),
+        _GT(typeof(GLuaComboBox)),
+        _GT(typeof(LuaWindow)),
+
+        _GT(typeof(TweenUtils)),
+
+
     };
 
     public static List<Type> dynamicList = new List<Type>()
