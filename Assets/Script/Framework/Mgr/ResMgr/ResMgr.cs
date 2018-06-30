@@ -2,15 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ResMgr : MonoBehaviour {
+namespace FW
+{
+    public class ResMgr :  EditorResMgr
+    {
+    }
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }

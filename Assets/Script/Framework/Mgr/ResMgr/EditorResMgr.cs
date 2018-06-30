@@ -6,7 +6,7 @@ using UnityEngine;
 using UObject = UnityEngine.Object;
 namespace FW
 {
-    public class ResMgr : BaseResMg
+    public class EditorResMgr : BaseResMg
     {
         public override void CreatePrefab(string relative, Action<GameObject> callback)
         {

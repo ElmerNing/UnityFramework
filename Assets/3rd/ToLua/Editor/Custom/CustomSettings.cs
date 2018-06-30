@@ -206,7 +206,7 @@ public static class CustomSettings
         _GT(typeof(GLuaComboBox)),
         _GT(typeof(LuaWindow)),
 
-        _GT(typeof(TweenUtils)),
+        //_GT(typeof(TweenUtils)),
 
 
     };
