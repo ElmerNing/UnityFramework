@@ -26,7 +26,7 @@ function M:dispose()
     self.autoRemove = nil
     self.tmListener = nil
 
-    M.super.dispose()
+    M.super.dispose(self)
 end
 
 --设置一个监听

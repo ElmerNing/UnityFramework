@@ -22,7 +22,7 @@ function M:ctor()
 end
 
 function M:dispose()
-    M.super.dispose()
+    M.super.dispose(self)
 end
 
 return M

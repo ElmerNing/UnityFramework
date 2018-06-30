@@ -1,7 +1,7 @@
 --
 --版权所有:{company}
 -- Author:{author}
--- Date: {time}
+-- Date: 2018-06-30 19:07:57
 --
 
 --@SuperType [Framework.LuaObject#M]

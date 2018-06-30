@@ -25,7 +25,7 @@ function M:ctor()
 end
 
 function M:dispose()
-    M.super.dispose()
+    M.super.dispose(self)
 end
 
 --添加一个监听
