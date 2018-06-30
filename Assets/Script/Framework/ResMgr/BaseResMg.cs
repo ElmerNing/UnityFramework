@@ -7,8 +7,12 @@ using UObject = UnityEngine.Object;
 
 namespace FW
 {
-    public abstract class BaseRefMg : BaseMgr
+    public abstract class BaseResMg : BaseMgr
     {
+        public String RelativePath2AssetPath(string relativePath)
+        {
+            return relativePath;
+        }
         /// <summary>
         /// 加载一个Prefab(Instantiate后的), 不使用后 ResMgr.DestroyPrefab GameObejct.Destroy 来销毁
         /// </summary>
