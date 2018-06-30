@@ -7,6 +7,7 @@ using UnityEditor;
 using BindType = ToLuaMenu.BindType;
 using System.Reflection;
 using FairyGUI;
+using FW;
 
 public static class CustomSettings
 {
@@ -206,7 +207,7 @@ public static class CustomSettings
         _GT(typeof(GLuaComboBox)),
         _GT(typeof(LuaWindow)),
 
-        //_GT(typeof(TweenUtils)),
+  
 
 
     };

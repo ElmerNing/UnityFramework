@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using FairyGUI.Utils;
+using FairyGUI;
 using LuaInterface;
 
-namespace FairyGUI
+namespace FW
 {
 	/// <summary>
 	/// 
