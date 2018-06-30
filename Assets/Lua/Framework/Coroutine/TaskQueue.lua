@@ -18,7 +18,7 @@ function M:ctor()
     self.tlTask = {}
 
     coroutine.start(function()
-        self.corUtil = CorUtil.new()
+        self.corUtil = CorUtil.New()
         while true do
             if self.isDisposed then
                 return

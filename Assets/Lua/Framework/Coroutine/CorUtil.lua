@@ -4,6 +4,12 @@
 -- Date: 2018-06-30 19:12:48
 --
 
+local running = coroutine.running
+local yield = coroutine.yield
+local resume = coroutine.resume
+local unpack = unpack
+
+
 --@SuperType [Framework.LuaObject#M]
 local M = class(..., LuaObject)
 

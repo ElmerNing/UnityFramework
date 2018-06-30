@@ -3,12 +3,22 @@
 require("Framework.Init")
 
 
-local go = FairyGUI.GObject()
-go:Dispose()
+local tq = TaskQueue.New()
+tq:Queue(function()
+    print("1")
+    coroutine.wait(1)
+    print("2")
 
-print( tolua.isnull(go) )
+end)
 
-IsNull(go)
+tq:Queue(function()
+    print("3")
+    coroutine.wait(1)
+    print("4")
+
+end)
+
+
 
 
 
