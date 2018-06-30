@@ -4,6 +4,8 @@
 -- Date: 2018-06-30 19:07:03
 --
 
+require("Framework.Fairy.FairyExtends")
+
 local UIPackageProxy = require("Framework.Fairy.UIPackageProxy")
 
 --@SuperType [Framework.LuaObject#M]
@@ -11,9 +13,7 @@ local M = class(..., LuaObject)
 
 M.log = Log.New(true):SetName(name)
 
-
 local instance = nil
-
 --@return [Framework.Fairy.FairyMgr#M]
 function M.GetInstance()
     if not instance then
@@ -77,5 +77,16 @@ function M:ParseUrl(url)
 end
 
 
+
+if false then
+    coroutine.start(function()
+        --创建对象
+        local gcom = FairyMgr:CreateObject_cor("url://测试/测试")
+        --获取子节点
+        local gtext = com:tm("n0", "text")
+        --赋值
+        gtext.text = "123"
+    end)
+end
 
 return M
