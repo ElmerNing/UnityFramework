@@ -10,9 +10,9 @@ public class Main : MonoBehaviour {
         //DontDestroyOnLoad(this.gameObject);
 
 
-        new FW.Mgr();
+        //new FW.Mgr();
 
-        FW.Mgr.inst.AddMgr<>
+        //FW.Mgr.inst.AddMgr<>
 
         //
     }

@@ -31,7 +31,7 @@ namespace FW
 
         public override void LoadFairyUIPackage(string packageName, Action<UIPackage> callback)
         {
-            string assetpath = PathConfig.Fairy_PATH + "/" + packageName;
+            string assetpath = Const.Fairy_PATH + "/" + packageName;
             UIPackage uiPackage = UIPackage.AddPackage(assetpath, (name, extension, type) =>
             {
                 UObject obj = UnityEditor.AssetDatabase.LoadAssetAtPath(name + extension, type);
@@ -40,14 +40,19 @@ namespace FW
             callback(uiPackage);
         }
 
-        public override bool UnloadAsset(string relative, UnityEngine.Object ui)
+        public override bool UnloadAsset(string relative, UnityEngine.Object uo)
         {
-            throw new NotImplementedException();
+            if (uo.GetType() == typeof(GameObject))
+            {
+                return false;
+            }
+            Resources.UnloadAsset(uo);
+            return true;
         }
 
         public override void UnloadUnused(Action callback)
         {
-            throw new NotImplementedException();
+            callback();
         }
     }
 
