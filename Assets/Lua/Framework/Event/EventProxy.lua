@@ -70,6 +70,12 @@ function M:RemoveListener(eventName, listener, luaObject)
 	
 end
 
+function M:RemoveAllListener()
+	for _, listenerMap in pairs(self.tmListenerMap) do
+
+	end
+end
+
 --广播事件
 function M:Broacast(eventName, ...)
 	assert(not self.isBroacasting, "派发过程中, 暂时不支持增加监听者")

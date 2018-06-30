@@ -7,12 +7,17 @@
 --@SuperType [Framework.LuaObject#M]
 local M = class(..., LuaObject)
 
---@return [重要:输入对应类型]
-function M.New()
-    return M()
+--@return [Framework.Fairy.UIPackageProxy#M]
+function M.New(...)
+    return M(...)
 end
-function M:ctor()
+function M:ctor(packageName)
     M.super.ctor(self)
+    self.packageName = packageName
+    self.loaded = false
+    self.uiPackage = true
+    self.eventProxy = EventProxy.New()
+    
 end
 
 function M:dispose()

@@ -207,7 +207,8 @@ public static class CustomSettings
         _GT(typeof(GLuaComboBox)),
         _GT(typeof(LuaWindow)),
 
-  
+        //自定义 自定义
+        _GT(typeof(CsProxy)),
 
 
     };

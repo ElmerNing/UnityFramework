@@ -4,6 +4,8 @@
 -- Date: 2018-06-30 19:07:03
 --
 
+local UIPackageProxy = require("Framework.Fairy.UIPackageProxy")
+
 --@SuperType [Framework.LuaObject#M]
 local M = class(..., LuaObject)
 
@@ -19,10 +21,31 @@ end
 
 function M:ctor()
     M.super.ctor(self)
+
+    self.tmUIPackageProxy = {}
 end
 
 function M:dispose()
     M.super.dispose(self)
 end
+
+function M:GetUIPackageProxy(packageName, isCreate)
+    
+    local uiPackageProxy = self.tmUIPackageProxy[packageName]
+    if isCreate and not uiPackageProxy then
+        uiPackageProxy = UIPackageProxy.New()
+    end
+end
+
+
+
+function M:GetUIPackage(packageName)
+    local uiPackageProxy = self:GetUIPackageProxy(packageName)
+    if uiPackageProxy then
+        return uiPackageProxy:GetUIPackage()
+    end
+end
+
+
 
 return M
