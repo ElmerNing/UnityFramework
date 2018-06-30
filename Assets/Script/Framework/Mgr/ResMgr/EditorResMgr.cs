@@ -31,7 +31,7 @@ namespace FW
 
         public override void LoadFairyUIPackage(string packageName, Action<UIPackage> callback)
         {
-            string assetpath = Const.Fairy_PATH + "/" + packageName;
+            string assetpath = Const.UI_PATH + packageName;
             UIPackage uiPackage = UIPackage.AddPackage(assetpath, (name, extension, type) =>
             {
                 UObject obj = UnityEditor.AssetDatabase.LoadAssetAtPath(name + extension, type);

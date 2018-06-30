@@ -8,7 +8,7 @@ namespace FW
     class Const
     {
         public const String RES_PATH = "Assets/Res/";
-        public const String Fairy_PATH = RES_PATH + "Fairy/";
+        public const String UI_PATH = RES_PATH + "UI/";
 
         
         

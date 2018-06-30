@@ -9,11 +9,14 @@ local UIPackageProxy = require("Framework.Fairy.UIPackageProxy")
 --@SuperType [Framework.LuaObject#M]
 local M = class(..., LuaObject)
 
+M.log = Log.New(true):SetName(name)
+
+
 local instance = nil
 
---@return [重要:输入对应类型]
+--@return [Framework.Fairy.FairyMgr#M]
 function M.GetInstance()
-    if instance then
+    if not instance then
         instance = M()
     end
     return instance
@@ -21,7 +24,6 @@ end
 
 function M:ctor()
     M.super.ctor(self)
-
     self.tmUIPackageProxy = {}
 end
 
@@ -30,20 +32,48 @@ function M:dispose()
 end
 
 function M:GetUIPackageProxy(packageName, isCreate)
-    
     local uiPackageProxy = self.tmUIPackageProxy[packageName]
     if isCreate and not uiPackageProxy then
-        uiPackageProxy = UIPackageProxy.New()
+        uiPackageProxy = UIPackageProxy.New(packageName)
     end
+    return uiPackageProxy
 end
-
-
 
 function M:GetUIPackage(packageName)
     local uiPackageProxy = self:GetUIPackageProxy(packageName)
     if uiPackageProxy then
         return uiPackageProxy:GetUIPackage()
     end
+end
+
+function M:CreateObject(url, fCallback)
+    local packageName, objectName = self:ParseUrl(url)
+    local uiPackageProxy = self:GetUIPackageProxy(packageName, true)
+    uiPackageProxy:CreateObject2(objectName,fCallback)
+end
+
+function M:CreateObject_cor(url)
+    local corUtil = CorUtil.New()
+    self:CreateObject(url,function(gobject)
+        corUtil:Resume(gobject)
+    end)
+    return corUtil:Yield()
+end
+
+--url 类似 url://packageName/objectName
+function M:ParseUrl(url)
+    local packageName, objectName
+    local tl = string.split(url, "//")
+    if not tl then
+        return
+    end
+    local url = tl[2]
+    if not url then
+        return
+    end
+    local tl = string.split(url, "/")
+    if not tl then return end
+    return tl[1], tl[2]
 end
 
 

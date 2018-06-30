@@ -15,11 +15,13 @@ function M:dispose()
     M.super.dispose(self)
 end
 
+--@return [Framework.Utils.Log#M]
 function M:SetEnabled(isEnabled)
     self.isEnabled = isEnabled
     return self
 end
 
+--@return [Framework.Utils.Log#M]
 function M:SetName(name)
     self.name = name
     return self

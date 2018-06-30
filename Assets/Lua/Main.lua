@@ -5,18 +5,14 @@ require("Framework.Init")
 
 local tq = TaskQueue.New()
 tq:Queue(function()
-    print("1")
-    coroutine.wait(1)
-    print("2")
+    
+
+    local a = FairyMgr:CreateObject_cor("url://测试/测试")
+    print(a)
 
 end)
 
-tq:Queue(function()
-    print("3")
-    coroutine.wait(1)
-    print("4")
 
-end)
 
 local gcom = FairyGUI.GComponent.New()
 

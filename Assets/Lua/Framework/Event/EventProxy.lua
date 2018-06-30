@@ -71,8 +71,8 @@ function M:RemoveListener(eventName, listener, luaObject)
 end
 
 function M:RemoveAllListener()
-	for _, listenerMap in pairs(self.tmListenerMap) do
-
+	for key, listenerMap in pairs(self.tmListenerMap) do
+		self.tmListenerMap[key] = nil
 	end
 end
 

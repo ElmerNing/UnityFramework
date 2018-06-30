@@ -11,7 +11,7 @@ local instance = nil
 
 --@return [重要:输入对应类型]
 function M.GetInstance()
-    if instance then
+    if not instance then
         instance = M()
     end
     return instance

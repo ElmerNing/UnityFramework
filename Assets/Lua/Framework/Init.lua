@@ -41,6 +41,12 @@ CorUtil = require("Framework.Coroutine.CorUtil")
 --任务队列
 TaskQueue = require("Framework.Coroutine.TaskQueue")
 
+--FairyMgr
+FairyMgr = require("Framework.Fairy.FairyMgr").GetInstance()
+
+
+
+
 
 
 
