@@ -4,17 +4,27 @@ require("Framework.Init")
 
 
 local tq = TaskQueue.New()
+
 tq:Queue(function()
     
 
-    local a = FairyMgr:CreateObject_cor("url://测试/测试")
-    print(a)
+   local btn = FairyGUI.GButton.New()
+   local test = {}
+   btn.onClick:Add(function()
+    print(test)
+   end)
+
+   MemLeak:Add(test)
+   btn:Dispose()
+   btn = nil
+   MemLeak:GCAndDump(true,true)
+
 
 end)
 
 
 
-local gcom = FairyGUI.GComponent.New()
+
 
 
 
