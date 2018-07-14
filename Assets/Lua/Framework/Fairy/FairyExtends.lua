@@ -42,7 +42,7 @@ do
         if not name2 then
             return child
         end
-        print(self, child)
+
         local child = self:_tm(name2)
         if not name3 then
             return child

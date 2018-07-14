@@ -32,6 +32,9 @@ Log = require("Framework.Utils.Log")
 --事件代理
 EventProxy = require("Framework.Event.EventProxy")
 
+--Promise
+Promise = require("Framework.Utils.Promise")
+
 --内存泄露检测
 MemLeak = require("Framework.Utils.MemLeak").GetInstance()
 

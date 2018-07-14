@@ -59,4 +59,13 @@ function M:Resume(...)
     end
 end
 
+function M:WaitPromise(promise)
+
+    promise:AddListener(function(suc, ...)
+        local tl = promise:GetResult()
+        self:Resume(suc, unpack(tl or {}))
+    end)
+    return self:Yield()
+end
+
 return M

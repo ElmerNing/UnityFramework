@@ -52,6 +52,28 @@ function M:CreateObject(url, fCallback)
     uiPackageProxy:CreateObject2(objectName,fCallback)
 end
 
+--@return [Framework.Utils.Promise#M]
+function M:CreateObjectAsync(url)
+    local function fTask(resolve, reject)
+        self:CreateObject(url, function(gobject)
+            if gobject then
+                --解决
+                local ret = resolve(gobject)
+                --没成功处理
+                if not ret then
+                    gobject:Dispose()
+                    gobject = nil
+                end
+            else
+                --拒绝
+                reject(gobject)
+            end
+        end)  
+    end
+
+    return Promise.New(fTask)
+end
+
 function M:CreateObject_cor(url)
     local corUtil = CorUtil.New()
     self:CreateObject(url,function(gobject)
