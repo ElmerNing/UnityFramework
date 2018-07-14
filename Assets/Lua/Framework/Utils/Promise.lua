@@ -62,7 +62,12 @@ function M:Break()
 
         --处理所有回调
         self:HandleListener()
+
+        --成功中断
+        return true
     end
+    --已经完成了 没法中断
+    return false
 
 end
 
