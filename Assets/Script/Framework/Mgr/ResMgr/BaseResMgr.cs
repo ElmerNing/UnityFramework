@@ -7,7 +7,7 @@ using UObject = UnityEngine.Object;
 
 namespace FW
 {
-    public abstract class BaseResMg : BaseMgr
+    public abstract class BaseResMgr : BaseMgr
     {
         public String RelativePath2AssetPath(string relativePath)
         {
