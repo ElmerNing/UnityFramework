@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using FairyGUI;
 using UnityEngine;
 
 namespace FW
@@ -27,9 +28,9 @@ namespace FW
         }
     }
 
-    public class ABMgr : BaseMgr
+    public class ABMgr 
     {
-
+        #region AB
         /// <summary>
         /// ab的根目录
         /// </summary>
@@ -61,14 +62,20 @@ namespace FW
         /// </summary>
         public ABRequestManager abRequestManager = null;
 
+        /// <summary>
+        /// 相关的resMgr
+        /// </summary>
+        private ResMgr resMgr;
+
 
         /// <summary>
         /// 构造函数
         /// </summary>
         /// <param name="folder">ab的跟目录</param>
         /// <param name="assetBundleManifest">ab的assetBundleManifest包名</param>
-        public ABMgr Init(string folder, string manifestName)
+        public ABMgr Init(ResMgr resMgr, string folder, string manifestName)
         {
+            this.resMgr = resMgr;
             this.folder = folder;
             this.manifestName = manifestName;
             this.abDict = new Dictionary<string, ABProxy>();
@@ -86,7 +93,7 @@ namespace FW
             abProxy.ab = ab;
         }
 
-        private void Update()
+        public void Update()
         {
             this.abRequestManager.Update();
         }
@@ -129,7 +136,6 @@ namespace FW
                     ABProxy ab = abDict[abName];
                     ab.Dispose();
                     abDict.Remove(list[i]);
-                    print("清理:" + abName);
                 }
             }
 
@@ -206,7 +212,7 @@ namespace FW
         /// <param name="fcallback"></param>
         public void LoadPrefab(string abName, string assetName, System.Action<GameObject> fcallback)
         {
-            StartCoroutine(LoadPrefabCor(abName, assetName, fcallback));
+            Mgr.inst.AddMgr<ResMgr>().StartCoroutine(LoadPrefabCor(abName, assetName, fcallback));
         }
 
 
@@ -241,7 +247,7 @@ namespace FW
         /// <param name="fcallback"></param>
         public void LoadAsset(string abName, string assetName, System.Action<UnityEngine.Object> fcallback)
         {
-            StartCoroutine(LoadAssetCor(abName, assetName, fcallback));
+            Mgr.inst.GetMgr<ResMgr>().StartCoroutine(LoadAssetCor(abName, assetName, fcallback));
         }
 
         /// <summary>
@@ -277,7 +283,7 @@ namespace FW
         /// <param name="fcallback"></param>
         public void LoadAsset(string abName, string assetName, Type T, System.Action<UnityEngine.Object> fcallback)
         {
-            StartCoroutine(LoadAssetCor(abName, assetName, T, fcallback));
+            resMgr.StartCoroutine(LoadAssetCor(abName, assetName, T, fcallback));
         }
 
         /// <summary>
@@ -311,7 +317,7 @@ namespace FW
         /// <param name="fcallback"></param>
         public void LoadAllAsset(string abName, System.Action<UnityEngine.Object[]> fcallback)
         {
-            StartCoroutine(LoadAllAssetCor(abName, fcallback));
+            resMgr.StartCoroutine(LoadAllAssetCor(abName, fcallback));
         }
 
         /// <summary>
@@ -344,7 +350,7 @@ namespace FW
         /// <param name="fcallback"></param>
         public void LoadABProxy(string abName, System.Action<ABProxy> fcallback)
         {
-            StartCoroutine(LoadABProxyCor(abName, fcallback));
+            resMgr.StartCoroutine(LoadABProxyCor(abName, fcallback));
         }
 
         /// <summary>
@@ -384,7 +390,7 @@ namespace FW
         /// <returns></returns>
         public void LoadABProxyList(List<string> abNameList, System.Action callback)
         {
-            StartCoroutine(LoadABProxyListCor(abNameList, callback));
+            resMgr.StartCoroutine(LoadABProxyListCor(abNameList, callback));
 
 
         }
@@ -432,7 +438,7 @@ namespace FW
         /// <param name="callback"></param>
         public void LoadSubAssets(string abName, string assetName, System.Action<UnityEngine.Object[]> callback)
         {
-            StartCoroutine(LoadSubAssetsCor(abName, assetName, callback));
+            resMgr.StartCoroutine(LoadSubAssetsCor(abName, assetName, callback));
         }
 
         /// <summary>
@@ -468,7 +474,7 @@ namespace FW
         /// <param name="callback"></param>
         public void LoadSubAssets(string abName, string assetName, Type type, System.Action<UnityEngine.Object[]> callback)
         {
-            StartCoroutine(LoadSubAssetsCor(abName, assetName, type, callback));
+            resMgr.StartCoroutine(LoadSubAssetsCor(abName, assetName, type, callback));
         }
 
         /// <summary>
@@ -546,6 +552,10 @@ namespace FW
             abProxy.UnloadAsset(uo);
             return true;
         }
+
+        #endregion
+
+
     }
 
 }

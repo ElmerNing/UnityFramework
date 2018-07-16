@@ -86,7 +86,7 @@ namespace FW
 
         private void MarkABAsset(string assetPath)
         {
-           SetCacheABName(assetPath, ABHelper.GetABName(assetPath));
+           SetCacheABName(assetPath, ResHelper.GetABName(assetPath));
         }
 
         static void SetCacheABName(string assetPath, string abName)

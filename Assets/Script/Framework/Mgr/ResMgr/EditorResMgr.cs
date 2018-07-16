@@ -4,6 +4,11 @@ using System.Collections.Generic;
 using FairyGUI;
 using UnityEngine;
 using UObject = UnityEngine.Object;
+
+#if UNITY_EDITOR && !AB_MODE
+
+
+
 namespace FW
 {
     public class EditorResMgr : BaseResMgr
@@ -55,5 +60,7 @@ namespace FW
             callback();
         }
     }
-
 }
+
+
+#endif

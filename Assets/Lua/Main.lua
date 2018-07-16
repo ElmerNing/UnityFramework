@@ -19,11 +19,13 @@ tq:Queue(function()
 --    btn = nil
 --    MemLeak:GCAndDump(true,true)
 
-    local corUtil = CorUtil.New()
+    local cor = CorUtil.New()
+    --local corUtil = CorUtil.New()
     local promise = FairyMgr:CreateObjectAsync("url://测试/测试")
-promise:Break()
-    local ret, com = corUtil:WaitPromise(promise)
 
+    local ret, com = corUtil:WaitPromise(promise)
+    local a = FairyMgr.GetInstance():CreateObjectAsync("url")
+    a:AddListener(f)
     print(ret, com)
     
 
