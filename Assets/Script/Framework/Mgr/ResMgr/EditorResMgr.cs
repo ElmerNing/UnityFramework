@@ -13,6 +13,8 @@ namespace FW
 {
     public class EditorResMgr : BaseResMgr
     {
+
+
         public override void CreatePrefab(string relative, Action<GameObject> callback)
         {
             string assetpath = RelativePath2AssetPath(relative);
@@ -36,7 +38,7 @@ namespace FW
 
         public override void LoadFairyUIPackage(string packageName, Action<UIPackage> callback)
         {
-            string assetpath = Const.UI_PATH + packageName;
+            string assetpath = ResHelper.UI_PATH + packageName;
             UIPackage uiPackage = UIPackage.AddPackage(assetpath, (name, extension, type) =>
             {
                 UObject obj = UnityEditor.AssetDatabase.LoadAssetAtPath(name + extension, type);

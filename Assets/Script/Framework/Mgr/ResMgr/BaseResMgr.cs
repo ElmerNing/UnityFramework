@@ -9,9 +9,9 @@ namespace FW
 {
     public abstract class BaseResMgr : BaseMgr
     {
-        public String RelativePath2AssetPath(string relativePath)
+        protected String RelativePath2AssetPath(string relativePath)
         {
-            return relativePath;
+            return ResHelper.RES_PATH + relativePath;
         }
         /// <summary>
         /// 加载一个Prefab(Instantiate后的), 不使用后 ResMgr.DestroyPrefab GameObejct.Destroy 来销毁

@@ -27,5 +27,30 @@ namespace FW
         }
         #endregion
 
+        #region 资源加载
+
+        public static void LoadPrefab(string relative, LuaFunction func)
+        {
+            Mgr.inst.GetMgr<ResMgr>().LoadAsset(relative, typeof(UnityEngine.GameObject), (UnityEngine.Object uo) =>
+            {
+                if (func != null)
+                {
+                    func.BeginPCall();
+                    func.Push(uo);
+                    func.PCall();
+                    func.EndPCall();
+                    func.Dispose();
+                    func = null;
+                }
+            });
+        }
+
+        public static void UnloadAsset(string relative, UnityEngine.Object uo)
+        {
+            Mgr.inst.GetMgr<ResMgr>().UnloadAsset(relative, uo);
+        }
+
+        #endregion
+
     }
 }

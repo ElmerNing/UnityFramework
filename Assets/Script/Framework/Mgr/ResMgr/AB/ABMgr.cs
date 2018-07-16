@@ -65,7 +65,7 @@ namespace FW
         /// <summary>
         /// 相关的resMgr
         /// </summary>
-        private ResMgr resMgr;
+        private BaseResMgr resMgr;
 
 
         /// <summary>
@@ -73,7 +73,7 @@ namespace FW
         /// </summary>
         /// <param name="folder">ab的跟目录</param>
         /// <param name="assetBundleManifest">ab的assetBundleManifest包名</param>
-        public ABMgr Init(ResMgr resMgr, string folder, string manifestName)
+        public ABMgr Init(BaseResMgr resMgr, string folder, string manifestName)
         {
             this.resMgr = resMgr;
             this.folder = folder;

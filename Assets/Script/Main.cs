@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public class Main : MonoBehaviour {
@@ -9,7 +10,7 @@ public class Main : MonoBehaviour {
         //System.GC.
         //DontDestroyOnLoad(this.gameObject);
 
-
+        Debug.Log(Path.GetDirectoryName(Application.dataPath) );
         new FW.Mgr();
 
         FW.Mgr.inst.AddMgr<FW.ResMgr>();

@@ -16,9 +16,16 @@ tq:Queue(function()
 
 
     local ret, com = corUtil:WaitPromise(promise)
-    local a = FairyMgr.GetInstance():CreateObjectAsync("url")
-    a:AddListener(f)
+
+
     print(ret, com)
+
+    CsProxy.LoadPrefab("模型/小青/小青.prefab",function(go)
+        print("123")
+        UnityEngine.GameObject.Instantiate(go)
+    end)
+
+
     
 
 
