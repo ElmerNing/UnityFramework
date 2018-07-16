@@ -74,14 +74,6 @@ function M:CreateObjectAsync(url)
     return Promise.New(fTask)
 end
 
-function M:CreateObject_cor(url)
-    local corUtil = CorUtil.New()
-    self:CreateObject(url,function(gobject)
-        corUtil:Resume(gobject)
-    end)
-    return corUtil:Yield()
-end
-
 --url 类似 url://packageName/objectName
 function M:ParseUrl(url)
     local packageName, objectName
@@ -102,12 +94,12 @@ end
 --例子
 if false then
     coroutine.start(function()
-        --创建对象
-        local gcom = FairyMgr:CreateObject_cor("url://测试/测试")
-        --获取子节点
-        local gtext = com:tm("n0", "text")
-        --赋值
-        gtext.text = "123"
+        local corUtil = CorUtil.New()
+        --创建一个异步对象
+        local promise = FairyMgr:CreateObjectAsync("url://测试/测试")
+        local ret, com = corUtil:WaitPromise(promise)
+        print(ret, com)
+
     end)
 end
 
