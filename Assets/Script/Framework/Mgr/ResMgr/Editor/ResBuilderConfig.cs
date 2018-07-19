@@ -23,6 +23,7 @@ namespace FW
         public class CopyFolder
         {
             public string folder; //需要复制的目录, 相对于FW.Const.RES_PATH(Assets/Res )
+            public string pattern;//
             //public string dstFolder; //目标目录  
             //public System.Func<string, bool> filter;
         }

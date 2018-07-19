@@ -34,9 +34,20 @@ public class 工具_打包
     {
         var builder = new FW.ResBuilder(CreateConfig());
         builder.Prepare();
-        builder.BuildRes(BuildTarget.Android);
-        builder.BuildRes(BuildTarget.iOS);
+        //builder.BuildRes(BuildTarget.Android);
+        //builder.BuildRes(BuildTarget.iOS);
         builder.BuildRes(BuildTarget.StandaloneWindows64);
+
+
+
+    }
+
+    [MenuItem("Tools/Build/生成包")]
+    static void ShengChengBao()
+    {
+        var builder = new FW.ResBuilder(CreateConfig());
+    
+        builder.BuildPack(BuildTarget.StandaloneWindows64, "D:/测试包", false);
 
 
 

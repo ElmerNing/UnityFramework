@@ -21,20 +21,37 @@ public class FileUtil
         File.Copy(org, dst);
     }
 
+    public static string FormatFolder(string folder)
+    {
+        folder = Path.GetFullPath(folder);
+        folder = folder.Replace("\\", "/");
+        if (!folder.EndsWith("/"))
+        {
+            folder += "/";
+        }
+        return folder;
+    }
+
     /// <summary>
     /// 拷贝两个目录
     /// </summary>
     /// <param name="origFolder"></param>
     /// <param name="targetFolder"></param>
-    public static void CopyDirectory(string pattern, string origFolder, string targetFolder)
+    public static void CopyDirectory(string pattern, string origFolder, string targetFolder, bool cover = true)
     {
-        origFolder = origFolder.Replace("\\", "/");
-        targetFolder = targetFolder.Replace("\\", "/");
+        //格式化
+        origFolder = FormatFolder(origFolder);
+        targetFolder = FormatFolder(targetFolder);
 
-        if (Directory.Exists(targetFolder))
+        //是否覆盖
+        if (cover)
         {
-            Directory.Delete(targetFolder, true);
+            if (Directory.Exists(targetFolder))
+            {
+                Directory.Delete(targetFolder, true);
+            }
         }
+        
 
         //查找目录下所有文件
         string[] pathArray = Directory.GetFiles(origFolder, pattern, SearchOption.AllDirectories).Where(path =>

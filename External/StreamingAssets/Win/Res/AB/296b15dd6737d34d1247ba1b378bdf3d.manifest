@@ -3,7 +3,7 @@ CRC: 470356949
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 8e0f3fc0016c1cae96e271706d9413a2
+    Hash: ae17e4fa06c45864a9a426cb132382ad
   TypeTreeHash:
     serializedVersion: 2
     Hash: cd835d697c62e63ab7b93a54ef9af259
@@ -30,4 +30,4 @@ ClassTypes:
 Assets:
 - "Assets/Res/\u6A21\u578B/\u5C0F\u9752/\u5C0F\u9752.prefab"
 Dependencies:
-- D:/A_FW/UnityFramework/Assets/../External/StreamingAssets/Win/Res/AB/6290274eee1b9fd8cd1a239eaf4a348a
+- D:/Work2/UnityFramework/Assets/../External/StreamingAssets/Win/Res/AB/6290274eee1b9fd8cd1a239eaf4a348a

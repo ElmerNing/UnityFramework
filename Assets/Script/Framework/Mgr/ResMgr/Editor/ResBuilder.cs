@@ -51,7 +51,24 @@ namespace FW
                 Directory.CreateDirectory(abFolder);
 
                 //编译AB
-                BuildPipeline.BuildAssetBundles(abFolder, assetBundleBuildList.ToArray(), BuildAssetBundleOptions.ChunkBasedCompression, target);
+                var manifest = BuildPipeline.BuildAssetBundles(abFolder, assetBundleBuildList.ToArray(), BuildAssetBundleOptions.ChunkBasedCompression, target);
+
+                //所有的
+                string[] abNameArray = manifest.GetAllAssetBundles();
+
+                //删除无用的AB
+                HashSet<string> abNameSet = new HashSet<string>(abNameArray);
+                string[] files = Directory.GetFiles(abFolder);
+                foreach (var item in files)
+                {
+                    string fileName = Path.GetFileName(item);
+                    fileName = fileName.Replace(".manifest", "");
+                    if (!abNameSet.Contains(fileName) && fileName != Path.GetFileName(abFolder))
+                    {
+                        Log.Print("删除AB:" + item);
+                        File.Delete(item);
+                    }
+                }
             }
             
 
@@ -60,11 +77,70 @@ namespace FW
             {
                 string org = ResHelper.GetAssetsResFolder() + copyFolder.folder;
                 string dst = ResHelper.GetResFolder(target) + copyFolder.folder;
-                FileUtil.CopyFile(org, dst);
+                string pattern = "*";
+                if (copyFolder.pattern != null)
+                {
+                    pattern = copyFolder.pattern;
+                }
+                FileUtil.CopyDirectory(pattern, org, dst);
             }
 
+            //复制Lua
+            {
+                string dst = ResHelper.GetLuaFolder();
+                if (Directory.Exists(dst))
+                {
+                    Directory.Delete(dst, true);
+                }
+                FileUtil.CopyDirectory("*.lua", LuaConst.luaDir, dst, false);
+                FileUtil.CopyDirectory("*.lua", LuaConst.toluaDir, dst, false);
+
+            }
+
+                
             //生成sbf
             CreateSBFAdnSave(ResHelper.GetResFolder(target));
+        }
+
+        /// <summary>
+        /// 打包
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="path"></param>
+        /// <param name="dev"></param>
+        public void BuildPack(BuildTarget target, string path, bool dev)
+        {
+            //copy res 到
+            string org = ResHelper.GetResFolder(target);
+            string dst = Application.streamingAssetsPath + "/Res/";
+            FileUtil.CopyDirectory("*", org, dst);
+
+            //刷新一下
+            AssetDatabase.Refresh();
+
+            // 若干设置
+            PlayerSettings.defaultScreenHeight = 960;
+            PlayerSettings.defaultScreenWidth = 540;
+            PlayerSettings.displayResolutionDialog = ResolutionDialogSetting.Disabled;
+            PlayerSettings.defaultIsFullScreen = false;
+
+            //BuildOptions
+            BuildOptions buildOtions = BuildOptions.None;
+            if (dev == true)
+            {
+                buildOtions = BuildOptions.Development;
+            }
+
+            //打包
+            string[] BUILDSCENE = { "Assets/_Scenes/Start.unity", "Assets/_Scenes/Load.unity" };
+
+            string ret = BuildPipeline.BuildPlayer(BUILDSCENE, path, target, buildOtions);
+
+            if (ret.Length > 0)
+            {
+                UnityEngine.Debug.LogError("打包失败！" + ret);
+                return;
+            }
         }
 
         #region 标记AB名字
