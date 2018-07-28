@@ -4,6 +4,7 @@ using UnityEngine;
 using FairyGUI;
 using System;
 using UObject = UnityEngine.Object;
+using System.IO;
 
 namespace FW
 {
@@ -54,10 +55,32 @@ namespace FW
         /// <param name="relative"></param>
         /// <param name="ui"></param>
         public abstract bool UnloadAsset(string relative, UObject ui);
+        
+        /// <summary>
+        /// 获取他的真实位置
+        /// </summary>
+        /// <param name="path">相对于ResWhichIsNotAB目录的路径</param>
+        /// <returns></returns>
+        public string GetPathOfResWhichIsNotAB(string path)
+        {
 
-        //#if UNITY_EDITOR && DEV_MODE
-        //#else
-        //public abstract void LoadABProxy(string abName, Action<AB.ABProxy> callback);
+#if UNITY_EDITOR && !AB_MODE
+            return ResHelper.GetAssetsResWichIsNotABFolder();
+#else
+            return ResHelper.GetResFolder() + path; 
+#endif
+        }
+
+        /// <summary>
+        /// 读取不打成AB的资源
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        public byte[] ReadResWhichIsNotAB(string path)
+        {
+            string fullPath = GetPathOfResWhichIsNotAB(path);
+            return File.ReadAllBytes(fullPath);
+        }
 
         /// <summary>
         /// 解压资源

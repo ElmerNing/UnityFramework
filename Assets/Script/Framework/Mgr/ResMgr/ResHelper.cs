@@ -163,6 +163,15 @@ namespace FW
         {
             return GetAssetsRoot() + ResHelper.RES_PATH;
         }
+
+        /// <summary>
+        /// 获取Assets的目录
+        /// </summary>
+        /// <returns></returns>
+        public static string GetAssetsResWichIsNotABFolder()
+        {
+            return GetAssetsRoot() + "Assets/ResWhichIsNotAB/";
+        }
 #endif
         #endregion
 

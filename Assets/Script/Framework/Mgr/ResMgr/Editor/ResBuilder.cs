@@ -70,7 +70,9 @@ namespace FW
                     }
                 }
             }
-            
+
+            //复制不打成AB的文件
+            FileUtil.CopyDirectory("*", ResHelper.GetAssetsResWichIsNotABFolder(), ResHelper.GetResFolder(target), false);
 
             //复制
             foreach (var copyFolder in this.config.copyFolderList)
