@@ -10,6 +10,13 @@
         "**/Temp": true,
         "**/Assets/3rd": true,
         "**/Assets/StreamingAssets": true,
+        "Luajit":true,
+        "Luajit64":true,
+        "**/.gitignore":true,
+        "External":true,
+        "LuaTemplatesDir":true,
+        "ProjectSettings":true,
+        "UnityPackageManager":true,
     },
     "search.exclude": {
         "**/node_modules": true,
