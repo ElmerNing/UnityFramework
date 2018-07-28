@@ -65,7 +65,7 @@ namespace FW
         {
 
 #if UNITY_EDITOR && !AB_MODE
-            return ResHelper.GetAssetsResWichIsNotABFolder();
+            return ResHelper.GetAssetsResWichIsNotABFolder() + path;
 #else
             return ResHelper.GetResFolder() + path; 
 #endif
