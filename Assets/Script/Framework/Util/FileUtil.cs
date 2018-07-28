@@ -72,4 +72,50 @@ public class FileUtil
             CopyFile(item, targetPath);
         }
     }
+
+
+    /// <summary>
+    /// 从stream读取
+    /// </summary>
+    /// <param name="path"></param>
+    /// <returns></returns>
+    public static WWW ReadFromStreamingAssets(string path)
+    {
+        string prefix = "";
+        if (Application.platform == RuntimePlatform.Android)
+        {
+            prefix = "file://";
+        }
+
+        string fullPath = string.Format("{0}{1}/{2}", prefix, Application.streamingAssetsPath, path);
+        return new WWW(fullPath);
+    }
+
+    /// <summary>
+    /// 从外部目录读取
+    /// </summary>
+    /// <param name="path"></param>
+    /// <returns></returns>
+    public static WWW ReadFromPersistentData(string path)
+    {
+        string fullPath = string.Format("{0}/{1}", Application.persistentDataPath, path);
+        return new WWW(fullPath);
+    }
+
+    /// <summary>
+    /// 写入外部目录， 立即生效
+    /// </summary>
+    /// <param name="path"></param>
+    /// <param name="data"></param>
+    public static void WriteToPersistentData(string path, byte[] data)
+    {
+        string fullPath = string.Format("{0}/{1}", Application.persistentDataPath, path);
+        string folder = Path.GetDirectoryName(fullPath);
+        if (!Directory.Exists(folder))
+        {
+            Directory.CreateDirectory(folder);
+        }
+
+        File.WriteAllBytes(fullPath, data);
+    }
 }

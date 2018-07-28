@@ -8,13 +8,15 @@ public class Main : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         //System.GC.
-        //DontDestroyOnLoad(this.gameObject);
+        DontDestroyOnLoad(this.gameObject);
 
         Debug.Log(Path.GetDirectoryName(Application.dataPath) );
         new FW.Mgr();
 
-        FW.Mgr.inst.AddMgr<FW.ResMgr>();
+        var resMgr = FW.Mgr.inst.AddMgr<FW.ResMgr>();
         FW.Mgr.inst.AddMgr<FW.LuaMgr>().StartUp();
+
+        resMgr.StartCoroutine(resMgr.UnzipRes() );
 
         //
     }

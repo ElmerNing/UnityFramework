@@ -59,6 +59,15 @@ namespace FW
         //#else
         //public abstract void LoadABProxy(string abName, Action<AB.ABProxy> callback);
 
+        /// <summary>
+        /// 解压资源
+        /// </summary>
+        /// <returns></returns>
+        public virtual IEnumerator UnzipRes()
+        {
+            yield break;
+        }
+
     }
 
 }
