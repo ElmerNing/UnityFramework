@@ -9,6 +9,8 @@ namespace FW
 {
     public class SceneMgr : BaseMgr
     {
+
+
         const string EMPTY_SCENE = "Assets/_Scenes/Empty.unity";
 
         /// <summary>
@@ -25,6 +27,22 @@ namespace FW
         /// 当前场景名字
         /// </summary>
         private string sceneName = null;
+
+        /// <summary>
+        /// 单例
+        /// </summary>
+        private static SceneMgr _inst = null;
+        public static SceneMgr inst
+        {
+            get
+            {
+                if (_inst == null)
+                {
+                    _inst = Mgr.inst.AddMgr<SceneMgr>();
+                }
+                return _inst;
+            }
+        }
 
         /// <summary>
         /// 加载场景
@@ -129,7 +147,7 @@ namespace FW
 #if UNITY_EDITOR && !AB_MODE
 #else
 
-            var resMgr = Mgr.inst.GetMgr<ResMgr>();
+            var resMgr = ResMgr.inst;
 
             //清除ab
             if (sceneName_pre != null && sceneName_pre != "" && sceneName_pre != EMPTY_SCENE)
@@ -165,7 +183,7 @@ namespace FW
 
             //清理资源
             bool finish = false;
-            Mgr.inst.GetMgr<ResMgr>().UnloadUnused(() => {
+            ResMgr.inst.UnloadUnused(() => {
                 finish = true;
             });
             while (true)

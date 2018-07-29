@@ -10,7 +10,7 @@ public class Main : MonoBehaviour {
         //System.GC.
         DontDestroyOnLoad(this.gameObject);
 
-        Debug.Log(Path.GetDirectoryName(Application.dataPath) );
+        
         new FW.Mgr();
 
         var resMgr = FW.Mgr.inst.AddMgr<FW.ResMgr>();
@@ -22,7 +22,7 @@ public class Main : MonoBehaviour {
 
         //UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("_Scenes/Empty");
 
-        sceneMgr.LoadScene("场景/测试场景1.unity", (result)=> { });
+        FW.SceneMgr.inst.LoadScene("场景/测试场景1.unity", (result)=> { });
 
         //resMgr.StartCoroutine(resMgr.UnzipRes() );
 

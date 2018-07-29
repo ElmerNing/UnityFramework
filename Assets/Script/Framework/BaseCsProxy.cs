@@ -11,7 +11,7 @@ namespace FW
         #region fairy
         public static void LoadFairyUIPackage(string packageName, LuaFunction func)
         {
-            Mgr.inst.GetMgr<ResMgr>().LoadFairyUIPackage(packageName, uiPackage =>
+            ResMgr.inst.LoadFairyUIPackage(packageName, uiPackage =>
             {
                 if (func != null)
                 {
@@ -23,7 +23,7 @@ namespace FW
         }
         public static void UnloadFairyUIPackage(string packageName)
         {
-            Mgr.inst.GetMgr<ResMgr>().UnloadFairyUIPackage(packageName);
+            ResMgr.inst.UnloadFairyUIPackage(packageName);
         }
         #endregion
 
@@ -31,7 +31,7 @@ namespace FW
 
         public static void LoadPrefab(string relative, LuaFunction func)
         {
-            Mgr.inst.GetMgr<ResMgr>().LoadAsset(relative, typeof(UnityEngine.GameObject), (UnityEngine.Object uo) =>
+            ResMgr.inst.LoadAsset(relative, typeof(UnityEngine.GameObject), (UnityEngine.Object uo) =>
             {
                 if (func != null)
                 {
@@ -47,7 +47,7 @@ namespace FW
 
         public static void UnloadAsset(string relative, UnityEngine.Object uo)
         {
-            Mgr.inst.GetMgr<ResMgr>().UnloadAsset(relative, uo);
+            ResMgr.inst.UnloadAsset(relative, uo);
         }
 
         #endregion

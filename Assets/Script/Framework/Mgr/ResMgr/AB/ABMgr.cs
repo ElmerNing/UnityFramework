@@ -213,7 +213,7 @@ namespace FW
         /// <param name="fcallback"></param>
         public void LoadPrefab(string abName, string assetName, System.Action<GameObject> fcallback)
         {
-            Mgr.inst.AddMgr<ResMgr>().StartCoroutine(LoadPrefabCor(abName, assetName, fcallback));
+            ResMgr.inst.StartCoroutine(LoadPrefabCor(abName, assetName, fcallback));
         }
 
 
@@ -250,7 +250,7 @@ namespace FW
         /// <param name="fcallback"></param>
         public void LoadAsset(string abName, string assetName, System.Action<UnityEngine.Object> fcallback)
         {
-            Mgr.inst.GetMgr<ResMgr>().StartCoroutine(LoadAssetCor(abName, assetName, fcallback));
+            ResMgr.inst.StartCoroutine(LoadAssetCor(abName, assetName, fcallback));
         }
 
         /// <summary>

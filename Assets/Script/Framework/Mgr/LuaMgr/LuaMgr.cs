@@ -8,6 +8,19 @@ namespace FW
 {
     class LuaMgr : BaseMgr
     {
+        private static LuaMgr _inst = null;
+        public static LuaMgr inst
+        {
+            get
+            {
+                if (_inst == null)
+                {
+                    _inst = Mgr._inst.AddMgr<LuaMgr>();
+                }
+                return _inst;
+            }
+        }
+
         public void StartUp() {
 
             LuaConst.luaResDir = ResHelper.GetLuaFolder();
