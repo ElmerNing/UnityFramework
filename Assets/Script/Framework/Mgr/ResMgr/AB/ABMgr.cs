@@ -11,6 +11,7 @@ namespace FW
     {
         //ABManager thiz;
         ABProxy abProxy;
+        
         public WaitForABProxy(ABMgr thiz, ABProxy abProxy)
         {
             //this.thiz = thiz;
@@ -228,7 +229,9 @@ namespace FW
             ABProxy abProxy = GetOrCreateABProxy(abName);
             if (!abProxy.isReady)
             {
+                abProxy.AddRef();
                 yield return LoadABProxySync(abProxy);
+                abProxy.RemoveRef();
             }
 
             //这里可以改为LoadPrefabSync
@@ -263,12 +266,15 @@ namespace FW
             ABProxy abProxy = GetOrCreateABProxy(abName);
             if (!abProxy.isReady)
             {
+                abProxy.AddRef();
                 yield return LoadABProxySync(abProxy);
+                abProxy.RemoveRef();
             }
 
             //这里以后考虑改为LoadAssetSync
             UnityEngine.Object go = abProxy.LoadAsset(assetName);
 
+            //yield return Resources.UnloadUnusedAssets();
             fcallback(go);
 
             yield break;
@@ -299,7 +305,9 @@ namespace FW
             ABProxy abProxy = GetOrCreateABProxy(abName);
             if (!abProxy.isReady)
             {
+                abProxy.AddRef();
                 yield return LoadABProxySync(abProxy);
+                abProxy.RemoveRef();
             }
 
             //这里以后考虑改为LoadAssetSync
@@ -332,7 +340,9 @@ namespace FW
             ABProxy abProxy = GetOrCreateABProxy(abName);
             if (!abProxy.isReady)
             {
+                abProxy.AddRef();
                 yield return LoadABProxySync(abProxy);
+                abProxy.RemoveRef();
             }
 
             //这里以后考虑改为LoadAssetSync
@@ -374,60 +384,14 @@ namespace FW
             ABProxy abProxy = GetOrCreateABProxy(abName);
             if (!abProxy.isReady)
             {
+                abProxy.AddRef();
                 yield return LoadABProxySync(abProxy);
+                abProxy.RemoveRef();
             }
 
             fcallback(abProxy);
 
             yield break;
-        }
-
-        /// <summary>
-        /// 加载一个abProxy队列
-        /// </summary>
-        /// <param name="abNameList"></param>
-        /// <param name="callback"></param>
-        /// <returns></returns>
-        public void LoadABProxyList(List<string> abNameList, System.Action callback)
-        {
-            resMgr.StartCoroutine(LoadABProxyListCor(abNameList, callback));
-
-
-        }
-
-        /// <summary>
-        /// 加载一个abProxy队列
-        /// </summary>
-        /// <param name="abNameList"></param>
-        /// <param name="callback"></param>
-        /// <returns></returns>
-        private IEnumerator LoadABProxyListCor(List<string> abNameList, System.Action callback)
-        {
-            //加载
-            List<WaitForABProxy> list = new List<WaitForABProxy>();
-            foreach (var abName in abNameList)
-            {
-                ABProxy abProxy = GetOrCreateABProxy(abName);
-                if (!abProxy.isReady)
-                {
-                    list.Add(LoadABProxySync(abProxy));
-                }
-            }
-
-            //等待加载完成
-            foreach (var item in list)
-            {
-                if (item.keepWaiting)
-                {
-                    yield return item;
-                }
-            }
-
-            //回调
-            callback();
-
-            yield break;
-
         }
 
         /// <summary>
@@ -454,7 +418,9 @@ namespace FW
             ABProxy abProxy = GetOrCreateABProxy(abName);
             if (!abProxy.isReady)
             {
+                abProxy.AddRef();
                 yield return LoadABProxySync(abProxy);
+                abProxy.RemoveRef();
             }
 
             //这里以后考虑改为LoadAssetSync
@@ -491,7 +457,9 @@ namespace FW
             ABProxy abProxy = GetOrCreateABProxy(abName);
             if (!abProxy.isReady)
             {
+                abProxy.AddRef();
                 yield return LoadABProxySync(abProxy);
+                abProxy.RemoveRef();
             }
 
             //这里以后考虑改为LoadAssetSync

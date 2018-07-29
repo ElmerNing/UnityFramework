@@ -18,7 +18,7 @@ public class FileUtil
             Directory.CreateDirectory(folder);
         }
 
-        File.Copy(org, dst);
+        File.Copy(org, dst, true);
     }
 
     public static string FormatFolder(string folder)

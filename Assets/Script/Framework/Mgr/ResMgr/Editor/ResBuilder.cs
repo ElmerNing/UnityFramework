@@ -63,7 +63,7 @@ namespace FW
                 {
                     string fileName = Path.GetFileName(item);
                     fileName = fileName.Replace(".manifest", "");
-                    if (!abNameSet.Contains(fileName) && fileName != Path.GetFileName(abFolder))
+                    if (!abNameSet.Contains(fileName) && fileName != "AB")
                     {
                         Log.Print("删除AB:" + item);
                         File.Delete(item);

@@ -71,6 +71,7 @@ namespace FW {
         public override void UnloadUnused(Action callback)
         {
             abMgr.UnloadUnused();
+            callback();
         }
 
         public override void CreatePrefab(string relative, Action<GameObject> callback)
@@ -78,6 +79,16 @@ namespace FW {
             string assetPath = RelativePath2AssetPath(relative);
             string abName = ResHelper.GetABName(assetPath);
             abMgr.LoadPrefab(abName, assetPath, callback);
+        }
+
+        public void LoadABProxy(string abName, Action<ABProxy> callback)
+        {
+            abMgr.LoadABProxy(abName, callback);
+        }
+
+        public ABProxy GetABProxy(string abName)
+        {
+            return abMgr.GetABProxy(abName);
         }
 
         public override bool DestroyPrefab(string relative, GameObject go)

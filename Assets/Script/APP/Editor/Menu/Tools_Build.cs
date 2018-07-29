@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEditor;
+using System.Collections.Generic;
 
 public class 工具_打包 
 {
@@ -22,6 +23,13 @@ public class 工具_打包
         config.AddABFolder(new FW.ResBuilderConfig.ABFolder()
         {
             folder = "模型",
+            filter = null,
+            renamer = null,
+        });
+
+        config.AddABFolder(new FW.ResBuilderConfig.ABFolder()
+        {
+            folder = "场景",
             filter = null,
             renamer = null,
         });
@@ -49,6 +57,32 @@ public class 工具_打包
     
         builder.BuildPack(BuildTarget.StandaloneWindows64, "D:/测试包", false);
 
+
+
+    }
+
+    [MenuItem("Tools/Build/刷新场景列表")]
+    static void TianJiaChangJing()
+    {
+        List<EditorBuildSettingsScene> scenes = new List<EditorBuildSettingsScene>();
+        scenes.Add(new EditorBuildSettingsScene("Assets/_Scenes/Start.unity", true));
+        scenes.Add(new EditorBuildSettingsScene("Assets/_Scenes/Empty.unity", true));
+
+
+#if !AB_MODE
+        string[] folders = { "Assets/Res" };
+        var gids= AssetDatabase.FindAssets("t:scene", folders);
+
+        foreach (var id in gids)
+        {
+            Debug.Log(AssetDatabase.GUIDToAssetPath(id));
+            scenes.Add(new EditorBuildSettingsScene(AssetDatabase.GUIDToAssetPath(id), true));
+        }
+#endif
+
+        
+
+        EditorBuildSettings.scenes = scenes.ToArray();
 
 
     }

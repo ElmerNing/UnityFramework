@@ -47,12 +47,19 @@ namespace FW
         /// </summary>
         public bool isResident { get; set; }
 
+        /// <summary>
+        /// 引用数量
+        /// </summary>
+        public int refCount = 0;
+
+        
         private bool _isReady = false;
         /// <summary>
         /// 是否准备就绪
         /// </summary>
         public bool isReady {
             get {
+               
                 if (_isReady)
                 {
                     return true;
@@ -79,6 +86,16 @@ namespace FW
             
         }
 
+
+        public void AddRef()
+        {
+            this.refCount += 1;
+        }
+
+        public void RemoveRef()
+        {
+            this.refCount -= 1;
+        }
 
         /// <summary>
         /// 标记tag 用于判断是否需要清理
@@ -163,10 +180,20 @@ namespace FW
                 return;
             }
 
+            //还有外部引用
+            if (this.refCount > 0)
+            {
+                this.SetSweepMark(mark);
+                return;
+            }
+
+            //没准备好
             if (!isReady) {
                 this.SetSweepMark(mark);
                 return;
             }
+
+            
 
             if (this.ab == null) {
                 return;

@@ -21,7 +21,6 @@ tq:Queue(function()
     print(ret, com)
 
     CsProxy.LoadPrefab("模型/小青/小青.prefab",function(go)
-        print("123")
         UnityEngine.GameObject.Instantiate(go)
     end)
 
